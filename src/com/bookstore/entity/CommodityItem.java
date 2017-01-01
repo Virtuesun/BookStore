@@ -1,98 +1,83 @@
 package com.bookstore.entity;
 
-public class Commodity {
-	private int id; // 商品id
-	private int id_book; // 所售商品图书id
-	private int id_seller;// 卖家id
+public class CommodityItem {
+	private String bookName; // 所售商品名称
+	private String sellerName;// 卖家昵称
 	private double price;// 商品价格
+	private String author;//作者
+	private String press;//出版社
+	private String press_date;//出版时间
 	private int number;// 商品库存数量
 	private String title;// 商品标题
 	private String description;// 商品描述
 	private String image;// 商品图片
 	private int view_count;//浏览量
-
-	public Commodity() {
+	
+	public String getBookName() {
+		return bookName;
 	}
-
-	public int getId() {
-		return id;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	public String getSellerName() {
+		return sellerName;
 	}
-
-	public int getId_book() {
-		return id_book;
+	public void setSellerName(String sellerName) {
+		this.sellerName = sellerName;
 	}
-
-	public void setId_book(int id_book) {
-		this.id_book = id_book;
-	}
-
-	public int getId_seller() {
-		return id_seller;
-	}
-
-	public void setId_seller(int id_seller) {
-		this.id_seller = id_seller;
-	}
-
 	public double getPrice() {
 		return price;
 	}
-
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public String getPress() {
+		return press;
+	}
+	public void setPress(String press) {
+		this.press = press;
+	}
+	public String getPress_date() {
+		return press_date;
+	}
+	public void setPress_date(String press_date) {
+		this.press_date = press_date;
+	}
 	public int getNumber() {
 		return number;
 	}
-
 	public void setNumber(int number) {
 		this.number = number;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public String getImage() {
 		return image;
 	}
-
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
 	public int getView_count() {
 		return view_count;
 	}
-
 	public void setView_count(int view_count) {
 		this.view_count = view_count;
 	}
-
-	@Override
-	public String toString() {
-		return "Commodity [id=" + id + ", id_book=" + id_book + ", id_seller=" + id_seller + ", price=" + price
-				+ ", number=" + number + ", title=" + title + ", description=" + description + ", image=" + image
-				+ ", view_count=" + view_count + "]";
-	}
-	
-	
 
 }

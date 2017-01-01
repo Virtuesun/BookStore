@@ -6,6 +6,7 @@ import java.util.Vector;
 import com.bookstore.biz.util.BizUtil;
 import com.bookstore.dao.CommodityDao;
 import com.bookstore.entity.Commodity;
+import com.bookstore.entity.CommodityItem;
 
 public class CommodityBizImpl implements com.bookstore.biz.CommodityBiz {
 
@@ -98,6 +99,30 @@ public class CommodityBizImpl implements com.bookstore.biz.CommodityBiz {
 	public boolean delete(Commodity commodity) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Vector<CommodityItem> getCommodityItemsByBookName(String bookName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector<CommodityItem> getCommodityItemsByBookAuthor(String author) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector<CommodityItem> getCommodityItemsByBookCategory(String category) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector<CommodityItem> getCommodityItemsBySellerName(String sellerName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

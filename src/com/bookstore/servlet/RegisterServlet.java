@@ -25,14 +25,14 @@ public class RegisterServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-     //////////////////////////////////////////////////
-		//String role = request.getParameter("role");
+		request.setCharacterEncoding("UTF-8");
+		String role = request.getParameter("role");
 		String username = request.getParameter("username");
 		String showname = request.getParameter("showname");
 		String password = request.getParameter("password");
 		String captcha = request.getParameter("captcha");
 		HttpSession session = request.getSession();
-		
+		System.out.println(request.getParameter("id"));
 		//注册成功标志
 		boolean success = true;
 		
@@ -66,8 +66,7 @@ public class RegisterServlet extends HttpServlet {
 				//用户名不存在，可以注册
 				request.removeAttribute("error_username");
 				user = new User();
-				//////////////////////////////////////////////////
-				user.setRole("买家");
+				user.setRole(role);
 				user.setUsername(username);
 				user.setShowname(showname);
 				user.setPassword(EncryptionUtil.getHash2(password, "MD5"));

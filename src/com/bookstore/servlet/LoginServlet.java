@@ -27,6 +27,7 @@ public class LoginServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -45,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 			if (user.getRole().equals("买家")) {
 				response.sendRedirect("index.jsp");
 			}else{
-				response.sendRedirect("seller_info.jsp");
+				response.sendRedirect("UserInfo.jsp");
 			}
 		}
 	}

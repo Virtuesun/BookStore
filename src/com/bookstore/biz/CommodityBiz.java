@@ -1,7 +1,9 @@
 package com.bookstore.biz;
 
 import java.util.Vector;
+
 import com.bookstore.entity.Commodity;
+import com.bookstore.entity.CommodityItem;
 
 public interface CommodityBiz {
 	//通过id获取商品
@@ -24,4 +26,11 @@ public interface CommodityBiz {
 	boolean update(Commodity commodity);
 	//删除商品
 	boolean delete(Commodity commodity);
+	
+	//20161231 19:30
+	//获取商品项
+	Vector<CommodityItem> getCommodityItemsByBookName(String bookName);
+	Vector<CommodityItem> getCommodityItemsByBookAuthor(String author);
+	Vector<CommodityItem> getCommodityItemsByBookCategory(String category);
+	Vector<CommodityItem> getCommodityItemsBySellerName(String sellerName);
 }

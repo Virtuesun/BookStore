@@ -1,17 +1,15 @@
 package com.bookstore.entity;
 
-import java.sql.Date;
-
 public class Book {
 	private int id; // 图书id
 	private String name; // 图书名字
 	private String author; // 图书作者
 	private String isbn; // 图书ISBN
 	private String press; // 出版社
-	private String verson; // 版次
+	private String version; // 版次 
 	private int pages; // 页数
 	private int words; // 字数
-	private Date date; // 印刷时间
+	private String press_date; // 出版时间
 	private int size; // 开本
 	private String paper; // 纸张
 	private String categories;// 类别,不同类别之间用 # 分割 
@@ -59,12 +57,12 @@ public class Book {
 		this.press = press;
 	}
 
-	public String getVerson() {
-		return verson;
+	public String getVersion() {
+		return version;
 	}
 
-	public void setVerson(String verson) {
-		this.verson = verson;
+	public void setVersion(String version) {
+		this.version = version;
 	}
 
 	public int getPages() {
@@ -83,12 +81,12 @@ public class Book {
 		this.words = words;
 	}
 
-	public Date getDate() {
-		return date;
+	public String getPress_date() {
+		return press_date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setPress_date(String press_date) {
+		this.press_date = press_date;
 	}
 
 	public int getSize() {
@@ -114,5 +112,13 @@ public class Book {
 	public void setCategories(String categories) {
 		this.categories = categories;
 	}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", author=" + author + ", isbn=" + isbn + ", press=" + press
+				+ ", version=" + version + ", pages=" + pages + ", words=" + words + ", date=" + press_date + ", size=" + size
+				+ ", paper=" + paper + ", categories=" + categories + "]";
+	}
+	
 
 }
