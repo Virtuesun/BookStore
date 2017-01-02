@@ -41,37 +41,13 @@ public class ProjectDaoImpl extends BaseDao implements ProjectDao {
 		return executeUpdate(sql, params);
 	}
 
-	///////////////////////////////
 	@Override
 	public int insertAndReturnId(Project project) {
 		
-		int id = 0;
-		int influences = 0;
-		influences = insert(project);//返回插入后影响的行数
-		if (influences > 0) {
-			//查找并返回插入后的id
-			String sql = "select LAST_INSERT_ID()";
-
-			RSProcessor bookRS = new RSProcessor() {
-				Object result = null;
-				@Override
-				public Object process(ResultSet rs) throws SQLException {
-					
-					if (rs.next()) {
-						
-						result = rs.getInt("LAST_INSERT_ID()");
-		
-					}
-					
-					return result;
-				}
-			
-			};
-
-			id =  (Integer) executeQuery(bookRS, sql,null);
-		}
-		
-		return id;
+		String sql = "insert into `project` (id_commodity, number) values(?,?)";
+		Object[] params = {project.getId_commodity(),project.getNumber()};
+		return insertAndReturnId(sql, params);
+	
 		
 	}
 

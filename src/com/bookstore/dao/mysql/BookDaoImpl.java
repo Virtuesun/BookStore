@@ -52,38 +52,15 @@ public class BookDaoImpl extends BaseDao implements BookDao {
 	}
 
 	
-	///////////////////////////////////////////////////
 	@Override
 	public int insertAndReturnId(Book book) {
 		
-		int id = 0;
-		int influences = 0;
-		influences = insert(book);//返回插入后影响的行数
-		if (influences > 0) {
-			//查找并返回插入后的id
-			String sql = "select LAST_INSERT_ID()";
-
-			RSProcessor bookRS = new RSProcessor() {
-				int result = 0;
-				@Override
-				public Object process(ResultSet rs) throws SQLException {
-					
-					if (rs.next()) {
-						
-						result = rs.getInt("LAST_INSERT_ID()");
+		String sql = "insert into book (name, author,isbn,press,version,pages,words,press_date,size,paper,categories) values(?,?,?,?,?,?,?,?,?,?,?)";
+		Object[] params = { book.getName(), book.getAuthor(), book.getIsbn(), book.getPress(), book.getVersion(),
+				book.getPages(), book.getWords(), book.getPress_date(), book.getSize(), book.getPaper(),
+				book.getCategories() };
 		
-					}
-					
-					return result;
-				}
-			
-			};
-
-			id =  (Integer) executeQuery(bookRS, sql,null);
-		}
-		
-		return id;
-
+		return insertAndReturnId(sql, params);
 	}
 
 	@Override

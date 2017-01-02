@@ -77,6 +77,41 @@ public class BaseDao {
 	public void closeAll(Connection conn, Statement stmt) {
 		closeAll(conn, stmt, null);
 	}
+	
+	@SuppressWarnings("resource")
+	public int insertAndReturnId(String sql, Object... params){
+		int result = 0;
+		int id = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = this.getConnection();
+			if (conn != null && !conn.isClosed()) {
+				pstmt = conn.prepareStatement(sql);
+				if(params != null) {
+					for (int i = 0; i < params.length; i++) {
+						pstmt.setObject(i + 1, params[i]);
+					}
+				}
+				result = pstmt.executeUpdate();
+				if(result==1){
+					sql = "select LAST_INSERT_ID()";
+					pstmt = conn.prepareStatement(sql);
+					rs= pstmt.executeQuery();
+					if (rs.next()){
+						id = rs.getInt("LAST_INSERT_ID()");
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(conn, pstmt);
+		}
+		return id;
+	}
+	
 
 	/**
 	 * 增、删、改操作

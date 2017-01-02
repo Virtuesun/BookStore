@@ -34,7 +34,7 @@ public class SearchServlet extends HttpServlet {
 		
 		request.setAttribute("commodityItems", commodityItems);
 		//跳转到搜索结果呈现页
-		request.getRequestDispatcher("commodityItems.jsp").forward(request, response);
+		request.getRequestDispatcher("managePage.jsp").forward(request, response);
 		
 	}
 

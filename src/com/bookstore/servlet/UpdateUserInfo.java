@@ -26,24 +26,26 @@ public class UpdateUserInfo extends HttpServlet {
 		
 		//更新用户
 		user.setShowname(request.getParameter("showname"));
-		user.setPassword(request.getParameter("password"));
-		user.setSex(request.getParameter("sex"));
-		user.setAge(Integer.parseInt(request.getParameter("age")));
+		//user.setPassword(request.getParameter("password"));
+		//user.setSex(request.getParameter("sex"));
+		//user.setAge(Integer.parseInt(request.getParameter("age")));
 		user.setEmail(request.getParameter("email"));
-		user.setPhone(request.getParameter("phone"));
-		user.setAddress(request.getParameter("adress"));
+		//user.setPhone(request.getParameter("phone"));
+		user.setAddress(request.getParameter("address"));
 		
 		UserBiz userBiz = new UserBizImpl();
 		if(userBiz.update(user)){
 			//更新成功
 			session.setAttribute("login", user);
 			request.setAttribute("message", "资料修改成功！");
+			request.getRequestDispatcher("../selfInfo.jsp").forward(request, response);
 		}else{
 			//更新失败
 			request.setAttribute("message", "资料修改失败！");
+			request.getRequestDispatcher("../selfInfo.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("/Auth/userInfo.jsp").forward(request, response);
+		
 	}
 
 	

@@ -31,7 +31,8 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		
+		System.out.println(request.getSession().getServletContext().getContextPath());
+		System.out.println(request.getSession().getServletContext().getRealPath("/test"));
 		//密码加密
 		password = EncryptionUtil.getHash2(password, "MD5");
 		
@@ -39,14 +40,17 @@ public class LoginServlet extends HttpServlet {
 		User user = userBiz.getUserByUserName(username);
 		if(user==null|| !user.getPassword().equals(password)){
 			request.setAttribute("message", "用户名或密码错误！");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			System.out.println("失败");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else{
 			request.removeAttribute("message");
 			session.setAttribute("login", user);
+			System.out.println(user.getUsername());
+			System.out.println("成功");
 			if (user.getRole().equals("买家")) {
 				response.sendRedirect("index.jsp");
 			}else{
-				response.sendRedirect("/Auth/UserInfo.jsp");
+				response.sendRedirect("managePage.jsp");
 			}
 		}
 	}

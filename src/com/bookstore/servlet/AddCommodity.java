@@ -46,7 +46,9 @@ public class AddCommodity extends HttpServlet {
 		commodity.setId_seller(user.getId());
 
 		// 上传文件的存储路径（服务器文件系统上的绝对文件路径）
-		String uploadFilePath = request.getSession().getServletContext().getRealPath("commodityImage/");
+		//String uploadFilePath = request.getSession().getServletContext().getRealPath("commodityImage/");
+		String uploadFilePath = "D://BookStore/CommodityImage/";
+		
 		File uploadFile = new File(uploadFilePath);
 		if (!uploadFile.exists()) {
 			// 路径不存在创建
@@ -54,7 +56,7 @@ public class AddCommodity extends HttpServlet {
 		}
 
 		// 通过Arrays类的asList()方法创建固定长度的集合
-		List<String> fileType = Arrays.asList("gif", "bmp", "jpg");
+		List<String> fileType = Arrays.asList("gif", "bmp", "jpg","png");
 		FileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload upload = new ServletFileUpload(factory);
 
@@ -133,11 +135,11 @@ public class AddCommodity extends HttpServlet {
 							System.err.println("上传失败，文件类型只能是gif、bmp、jpg ");
 							success = false;
 						} else {
-							String newFileName = "pic" + user.getId() + "." + ext;
+							String newFileName = "pic" + System.currentTimeMillis() + "." + ext;
 							File fullFile = new File(newFileName);
 							File saveFile = new File(uploadFilePath, fullFile.getName());
 							item.write(saveFile);
-							commodity.setImage(newFileName);
+							commodity.setImage(uploadFilePath+newFileName);
 						}
 					} else {
 						success = false;
@@ -153,12 +155,14 @@ public class AddCommodity extends HttpServlet {
 			BookBiz bookBiz = new BookBizImpl();
 			int id_book = bookBiz.insertAndReturnId(book);
 			commodity.setId_book(id_book);
+			commodity.setState("在架");
 			CommodityBiz commodityBiz = new CommodityBizImpl();
 			commodityBiz.insert(commodity);
-			response.sendRedirect("SellerCommodityItems.action");
+			System.out.println(uploadFilePath );
+			response.sendRedirect("../index.jsp");
 		} else {
 			request.setAttribute("message", "上架商品出错！");
-			request.getRequestDispatcher("/Auth/addCommodity.jsp").forward(request, response);
+			request.getRequestDispatcher("../grounding.jsp").forward(request, response);
 		}
 
 	}

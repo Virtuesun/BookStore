@@ -7,6 +7,7 @@ import java.util.Vector;
 import com.bookstore.dao.base.BaseDao;
 import com.bookstore.dao.base.RSProcessor;
 import com.bookstore.entity.Commodity;
+import com.bookstore.entity.CommodityItem;
 
 public class CommodityDaoImpl extends BaseDao implements com.bookstore.dao.CommodityDao {
 
@@ -304,5 +305,172 @@ public class CommodityDaoImpl extends BaseDao implements com.bookstore.dao.Commo
 		return  executeUpdate(sql, params);
 		
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Vector<CommodityItem> getCommodityItemsByBookName(String bookName) {
+		
+		String sql = "select  book.name,`user`.showname,commodity.price,book.author,book.press,"
+				+ "book.press_date,commodity.number,commodity.title,"
+				+"commodity.description,commodity.image,commodity.view_count "
+				+ "from book,`user`,commodity where commodity.id_book = book.id and "
+				+"commodity.id_seller = `user`.id and name = ?";
+
+		RSProcessor commodityItemsRS = new RSProcessor() {
+			
+			@Override
+			public Object process(ResultSet rs) throws SQLException {
+				Vector<CommodityItem> commodityItems = new Vector<CommodityItem>();
+				
+				while(rs != null && rs.next()) {
+					CommodityItem commodityItem = new CommodityItem();
+					commodityItem.setBookName(bookName);
+					commodityItem.setSellerName(rs.getString("showname"));
+					commodityItem.setPrice(rs.getDouble("price"));
+					commodityItem.setAuthor(rs.getString("author"));
+					commodityItem.setPress(rs.getString("press"));
+					commodityItem.setPress_date(rs.getString("press_date"));
+					commodityItem.setNumber(rs.getInt("number"));
+					commodityItem.setTitle(rs.getString("title"));
+					commodityItem.setDescription("description");
+					commodityItem.setImage(rs.getString("image"));
+					commodityItem.setView_count(rs.getInt("view_count"));
+					commodityItems.add(commodityItem);
+				}
+
+				return commodityItems;
+			}
+
+		};
+
+		return  (Vector<CommodityItem>) executeQuery(commodityItemsRS, sql, bookName);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Vector<CommodityItem> getCommodityItemsByBookAuthor(String author) {
+
+
+		String sql = "select  book.name,`user`.showname,commodity.price,book.author,book.press,"
+				+ "book.press_date,commodity.number,commodity.title,"
+				+"commodity.description,commodity.image,commodity.view_count "
+				+ "from book,`user`,commodity where commodity.id_book = book.id and "
+				+"commodity.id_seller = `user`.id and author = ?";
+
+		RSProcessor commodityItemsRS = new RSProcessor() {
+			
+			@Override
+			public Object process(ResultSet rs) throws SQLException {
+				Vector<CommodityItem> commodityItems = new Vector<CommodityItem>();
+				
+				while(rs != null && rs.next()) {
+					CommodityItem commodityItem = new CommodityItem();
+					commodityItem.setBookName(rs.getString("name"));
+					commodityItem.setSellerName(rs.getString("showname"));
+					commodityItem.setPrice(rs.getDouble("price"));
+					commodityItem.setAuthor(author);
+					commodityItem.setPress(rs.getString("press"));
+					commodityItem.setPress_date(rs.getString("press_date"));
+					commodityItem.setNumber(rs.getInt("number"));
+					commodityItem.setTitle(rs.getString("title"));
+					commodityItem.setDescription("description");
+					commodityItem.setImage(rs.getString("image"));
+					commodityItem.setView_count(rs.getInt("view_count"));
+					commodityItems.add(commodityItem);
+				}
+
+				return commodityItems;
+			}
+
+		};
+
+		return  (Vector<CommodityItem>) executeQuery(commodityItemsRS, sql, author);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Vector<CommodityItem> getCommodityItemsByBookCategory(String category) {
+		
+		String sql = "select  book.name,`user`.showname,commodity.price,book.author,book.press,"
+				+ "book.press_date,commodity.number,commodity.title,"
+				+"commodity.description,commodity.image,commodity.view_count "
+				+ "from book,`user`,commodity where commodity.id_book = book.id and "
+				+"commodity.id_seller = `user`.id and categories = ?";
+
+		RSProcessor commodityItemsRS = new RSProcessor() {
+			
+			@Override
+			public Object process(ResultSet rs) throws SQLException {
+				Vector<CommodityItem> commodityItems = new Vector<CommodityItem>();
+				
+				while(rs != null && rs.next()) {
+					CommodityItem commodityItem = new CommodityItem();
+					commodityItem.setBookName(rs.getString("name"));
+					commodityItem.setSellerName(rs.getString("showname"));
+					commodityItem.setPrice(rs.getDouble("price"));
+					commodityItem.setAuthor(rs.getString("author"));
+					commodityItem.setPress(rs.getString("press"));
+					commodityItem.setPress_date(rs.getString("press_date"));
+					commodityItem.setNumber(rs.getInt("number"));
+					commodityItem.setTitle(rs.getString("title"));
+					commodityItem.setDescription("description");
+					commodityItem.setImage(rs.getString("image"));
+					commodityItem.setView_count(rs.getInt("view_count"));
+					commodityItems.add(commodityItem);
+				}
+
+				return commodityItems;
+			}
+
+		};
+
+		return  (Vector<CommodityItem>) executeQuery(commodityItemsRS, sql,category);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Vector<CommodityItem> getCommodityItemsBySellerName(String sellerName) {
+		
+
+		String sql = "select  book.name,`user`.showname,commodity.price,book.author,book.press,"
+				+ "book.press_date,commodity.number,commodity.title,"
+				+"commodity.description,commodity.image,commodity.view_count "
+				+ "from book,`user`,commodity where commodity.id_book = book.id and "
+				+"commodity.id_seller = `user`.id and showname = ?";
+
+		RSProcessor commodityItemsRS = new RSProcessor() {
+			
+			@Override
+			public Object process(ResultSet rs) throws SQLException {
+				Vector<CommodityItem> commodityItems = new Vector<CommodityItem>();
+				
+				while(rs != null && rs.next()) {
+					CommodityItem commodityItem = new CommodityItem();
+					commodityItem.setBookName(rs.getString("name"));
+					commodityItem.setSellerName(rs.getString("showname"));
+					commodityItem.setPrice(rs.getDouble("price"));
+					commodityItem.setAuthor(rs.getString("author"));
+					commodityItem.setPress(rs.getString("press"));
+					commodityItem.setPress_date(rs.getString("press_date"));
+					commodityItem.setNumber(rs.getInt("number"));
+					commodityItem.setTitle(rs.getString("title"));
+					commodityItem.setDescription("description");
+					commodityItem.setImage(rs.getString("image"));
+					commodityItem.setView_count(rs.getInt("view_count"));
+					commodityItems.add(commodityItem);
+				}
+
+				return commodityItems;
+			}
+
+		};
+
+		return  (Vector<CommodityItem>) executeQuery(commodityItemsRS, sql, sellerName);
+		
+	}
+
 
 }

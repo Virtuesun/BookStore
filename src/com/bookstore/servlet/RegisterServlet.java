@@ -27,12 +27,14 @@ public class RegisterServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		String role = request.getParameter("role");
+		String sex = request.getParameter("sex");
 		String username = request.getParameter("username");
 		String showname = request.getParameter("showname");
 		String password = request.getParameter("password");
+		String email = request.getParameter("email");
 		String captcha = request.getParameter("captcha");
 		HttpSession session = request.getSession();
-		System.out.println(request.getParameter("id"));
+		
 		//注册成功标志
 		boolean success = true;
 		
@@ -70,23 +72,25 @@ public class RegisterServlet extends HttpServlet {
 				user.setUsername(username);
 				user.setShowname(showname);
 				user.setPassword(EncryptionUtil.getHash2(password, "MD5"));
+				user.setEmail(email);
+				user.setSex(sex);
 				if(userBiz.register(user)){
 					//注册成功
 					request.removeAttribute("message");
-					response.sendRedirect("login.jsp");
+					response.sendRedirect("index.jsp");
 				}else{
 					//注册失败
 					request.setAttribute("message", "注册失败");
-					request.getRequestDispatcher("register.jsp").forward(request, response);
+					request.getRequestDispatcher("reg.jsp").forward(request, response);
 				}
 			}else{
 				//用户名已存在
 				request.setAttribute("error_username", "账号被占用");
-				request.getRequestDispatcher("register.jsp").forward(request, response);
+				request.getRequestDispatcher("reg.jsp").forward(request, response);
 			}
 		}else{
 			//非法输入
-			request.getRequestDispatcher("register.jsp").forward(request, response);
+			request.getRequestDispatcher("reg.jsp").forward(request, response);
 		}
 		
 	}
