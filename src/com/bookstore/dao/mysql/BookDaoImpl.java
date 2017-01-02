@@ -11,7 +11,7 @@ public class BookDaoImpl extends BaseDao implements BookDao {
 
 	@Override
 	public Book getBookById(int id) {
-		String sql = "select name, author,isbn,press,verson,pages,words,press_date,size,paper,categories from book where id = ?";
+		String sql = "select name, author,isbn,press,version,pages,words,press_date,size,paper,categories from book where id = ?";
 
 		RSProcessor bookRS = new RSProcessor() {
 
@@ -44,11 +44,73 @@ public class BookDaoImpl extends BaseDao implements BookDao {
 
 	@Override
 	public int insert(Book book) {
-		String sql = "insert into book (name, author,isbn,press,verson,pages,words,press_date,size,paper,categories) values(?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into book (name, author,isbn,press,version,pages,words,press_date,size,paper,categories) values(?,?,?,?,?,?,?,?,?,?,?)";
 		Object[] params = { book.getName(), book.getAuthor(), book.getIsbn(), book.getPress(), book.getVersion(),
 				book.getPages(), book.getWords(), book.getPress_date(), book.getSize(), book.getPaper(),
 				book.getCategories() };
 		return executeUpdate(sql, params);
 	}
+
+	
+	///////////////////////////////////////////////////
+	@Override
+	public int insertAndReturnId(Book book) {
+		
+		int id = 0;
+		int influences = 0;
+		influences = insert(book);//返回插入后影响的行数
+		if (influences > 0) {
+			//查找并返回插入后的id
+			String sql = "select LAST_INSERT_ID()";
+
+			RSProcessor bookRS = new RSProcessor() {
+				int result = 0;
+				@Override
+				public Object process(ResultSet rs) throws SQLException {
+					
+					if (rs.next()) {
+						
+						result = rs.getInt("LAST_INSERT_ID()");
+		
+					}
+					
+					return result;
+				}
+			
+			};
+
+			id =  (Integer) executeQuery(bookRS, sql,null);
+		}
+		
+		return id;
+
+	}
+
+	@Override
+	public int update(Book book) {
+		int influences = 0;
+		
+		String sql = "update book set name = ?, author = ?,isbn = ?,press = ?,verson = ?,pages = ?,words = ?,press_date = ?,size = ?,paper = ?,categories = ? where id = ?";
+		Object[] params = { book.getName(), book.getAuthor(), book.getIsbn(), book.getPress(), book.getVersion(),
+				book.getPages(), book.getWords(), book.getPress_date(), book.getSize(), book.getPaper(),
+				book.getCategories(),book.getId() };
+		influences =  executeUpdate(sql, params);
+		
+		
+		return influences;
+	}
+
+	@Override
+	public int delete(Book book) {
+		int influences = 0;
+		
+		String sql = "delete from book where id = ?";
+		Object[] params = { book.getId() };
+		influences =  executeUpdate(sql, params);
+		
+		return influences;
+	}
+	
+	
 
 }

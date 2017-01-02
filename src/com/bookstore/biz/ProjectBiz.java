@@ -10,4 +10,5 @@ public interface ProjectBiz {
 	//插入项目返回自动增长的ID
 	int insertAndReturnId(Project project);
 
+	boolean delete(Project project);
 }

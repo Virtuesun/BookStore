@@ -14,7 +14,7 @@ import com.bookstore.biz.impl.UserBizImpl;
 import com.bookstore.entity.User;
 
 
-@WebServlet("/UpdateUserInfo.action")
+@WebServlet("/Auth/UpdateUserInfo.action")
 public class UpdateUserInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -43,7 +43,7 @@ public class UpdateUserInfo extends HttpServlet {
 			request.setAttribute("message", "资料修改失败！");
 		}
 		
-		request.getRequestDispatcher("userInfo.jsp").forward(request, response);
+		request.getRequestDispatcher("/Auth/userInfo.jsp").forward(request, response);
 	}
 
 	

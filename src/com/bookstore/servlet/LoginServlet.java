@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 			if (user.getRole().equals("买家")) {
 				response.sendRedirect("index.jsp");
 			}else{
-				response.sendRedirect("UserInfo.jsp");
+				response.sendRedirect("/Auth/UserInfo.jsp");
 			}
 		}
 	}

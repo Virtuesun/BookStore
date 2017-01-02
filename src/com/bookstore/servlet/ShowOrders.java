@@ -15,7 +15,7 @@ import com.bookstore.biz.impl.OrderBizImpl;
 import com.bookstore.entity.Order;
 import com.bookstore.entity.User;
 
-@WebServlet("/ShowOrders.action")
+@WebServlet("/Auth/ShowOrders.action")
 public class ShowOrders extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,7 +32,7 @@ public class ShowOrders extends HttpServlet {
 		}
 		
 		request.setAttribute("showOrders", orders);
-		request.getRequestDispatcher("showOrders.jsp").forward(request, response);
+		request.getRequestDispatcher("/Auth/showOrders.jsp").forward(request, response);
 		
 	}
 

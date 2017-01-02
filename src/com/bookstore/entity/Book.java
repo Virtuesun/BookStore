@@ -6,10 +6,10 @@ public class Book {
 	private String author; // 图书作者
 	private String isbn; // 图书ISBN
 	private String press; // 出版社
-	private String version; // 版次 
+	private String version; // 版次
 	private int pages; // 页数
 	private int words; // 字数
-	private String press_date; // 出版时间
+	private String press_date; // 印刷时间
 	private int size; // 开本
 	private String paper; // 纸张
 	private String categories;// 类别,不同类别之间用 # 分割 
@@ -56,6 +56,7 @@ public class Book {
 	public void setPress(String press) {
 		this.press = press;
 	}
+
 
 	public String getVersion() {
 		return version;
@@ -112,13 +113,5 @@ public class Book {
 	public void setCategories(String categories) {
 		this.categories = categories;
 	}
-
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", name=" + name + ", author=" + author + ", isbn=" + isbn + ", press=" + press
-				+ ", version=" + version + ", pages=" + pages + ", words=" + words + ", date=" + press_date + ", size=" + size
-				+ ", paper=" + paper + ", categories=" + categories + "]";
-	}
-	
 
 }

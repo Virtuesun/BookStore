@@ -55,50 +55,189 @@ public class CommodityBizImpl implements com.bookstore.biz.CommodityBiz {
 
 	@Override
 	public Commodity getCommodityByBookId(int bookId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		CommodityDao commodityDao = null;
+		Commodity commodity = null;
+		try {
+			commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			 commodity = commodityDao.getCommodityByBookId(bookId);
+			
+		}
+		return commodity;
+		
 	}
 
 	@Override
 	public Vector<Commodity> getCommoditiesBySellerId(int sellerId) {
-		// TODO Auto-generated method stub
-		return null;
+		CommodityDao commodityDao = null;
+		Vector<Commodity> commodities = new Vector<Commodity>();
+		
+		try {
+				commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			 commodities = commodityDao.getCommoditiesBySellerId(sellerId);
+			
+		}
+		return commodities;
+		
 	}
 
 	@Override
 	public Vector<Commodity> getCommoditiesByBookName(String bookName) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		CommodityDao commodityDao = null;
+		Vector<Commodity> commodities = new Vector<Commodity>();
+		
+		try {
+				commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			 commodities = commodityDao.getCommoditiesByBookName(bookName);
+			
+		}
+		return commodities;
+		
 	}
 
 	@Override
 	public Vector<Commodity> getCommoditiesByBookAuthor(String author) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		CommodityDao commodityDao = null;
+		Vector<Commodity> commodities = new Vector<Commodity>();
+		
+		try {
+				commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			 commodities = commodityDao.getCommoditiesByBookAuthor(author);
+			
+		}
+		return commodities;
+		
 	}
 
 	@Override
 	public Vector<Commodity> getCommoditiesByBookPress(String press) {
-		// TODO Auto-generated method stub
-		return null;
+
+
+		CommodityDao commodityDao = null;
+		Vector<Commodity> commodities = new Vector<Commodity>();
+		
+		try {
+				commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			 commodities = commodityDao.getCommoditiesByBookPress(press);
+			
+		}
+		return commodities;
+		
 	}
 
 	@Override
 	public Vector<Commodity> getCommoditiesByBookCategory(String category) {
-		// TODO Auto-generated method stub
-		return null;
+
+
+		CommodityDao commodityDao = null;
+		Vector<Commodity> commodities = new Vector<Commodity>();
+		
+		try {
+				commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			 commodities = commodityDao.getCommoditiesByBookCategory(category);
+			
+		}
+		return commodities;
+		
 	}
 
 	@Override
 	public boolean update(Commodity commodity) {
-		// TODO Auto-generated method stub
-		return false;
+		int influences = 0;
+		CommodityDao commodityDao = null;
+		boolean result = false;
+		try {
+			commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			 influences = commodityDao.update(commodity);
+			
+		}
+		if(influences > 0){
+			result = true;
+		}
+		return result;
+		
 	}
 
 	@Override
 	public boolean delete(Commodity commodity) {
-		// TODO Auto-generated method stub
-		return false;
+		int influences = 0;
+		CommodityDao commodityDao = null;
+		boolean result = false;
+		try {
+			commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			 influences = commodityDao.delete(commodity);
+			
+		}
+		if(influences > 0){
+			result = true;
+		}
+		return result;
 	}
 
 	@Override

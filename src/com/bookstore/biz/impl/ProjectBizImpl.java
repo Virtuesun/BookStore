@@ -52,8 +52,52 @@ public class ProjectBizImpl implements ProjectBiz {
 
 	@Override
 	public int insertAndReturnId(Project project) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		ProjectDao projectDao = null;
+		int result =  0 ;
+		try {
+			projectDao = (ProjectDao) BizUtil.getDialectedDao(ProjectDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (projectDao != null) {
+			 result = projectDao.insertAndReturnId(project);
+			
+		}
+		return result;
+		
+	}
+
+	@Override
+	public boolean delete(Project project) {
+		
+		
+
+		int influences = 0;
+		ProjectDao projectDao = null;
+		boolean result = false;
+		try {
+			projectDao = (ProjectDao) BizUtil.getDialectedDao(ProjectDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (projectDao != null) {
+			 influences = projectDao.delete(project);
+			
+		}
+		if (influences > 0) {
+			result = true;
+		}
+		return result;
+		
 	}
 
 }

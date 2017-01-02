@@ -1,8 +1,10 @@
 package com.bookstore.entity;
 
 public class Commodity {
+
 	private int id; // 商品id
 	private int id_book; // 所售商品图书id
+	private String state; //商品是否在架
 	private int id_seller;// 卖家id
 	private double price;// 商品价格
 	private int number;// 商品库存数量
@@ -86,13 +88,12 @@ public class Commodity {
 		this.view_count = view_count;
 	}
 
-	@Override
-	public String toString() {
-		return "Commodity [id=" + id + ", id_book=" + id_book + ", id_seller=" + id_seller + ", price=" + price
-				+ ", number=" + number + ", title=" + title + ", description=" + description + ", image=" + image
-				+ ", view_count=" + view_count + "]";
+	public String getState() {
+		return state;
 	}
-	
-	
+
+	public void setState(String state) {
+		this.state = state;
+	}
 
 }

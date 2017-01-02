@@ -12,7 +12,7 @@ import com.bookstore.biz.OrderBiz;
 import com.bookstore.biz.impl.OrderBizImpl;
 import com.bookstore.entity.Order;
 
-@WebServlet("/OrderManager.action")
+@WebServlet("/Auth/OrderManager.action")
 public class OrderManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -59,7 +59,7 @@ public class OrderManager extends HttpServlet {
 
 		// 更新
 		orderBiz.update(order);
-		response.sendRedirect("orderManage.jsp");
+		response.sendRedirect("/Auth/orderManage.jsp");
 	}
 
 }

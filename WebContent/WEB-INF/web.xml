@@ -26,4 +26,15 @@
     <res-ref-name>jdbc/bookStore</res-ref-name>
     <res-auth>Container</res-auth>
   </resource-ref>
+  
+  <filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.bookstore.filter.LoginFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/Auth/*</url-pattern>
+	</filter-mapping> 
+  
 </web-app>

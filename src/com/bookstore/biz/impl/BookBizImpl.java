@@ -52,20 +52,73 @@ public class BookBizImpl implements BookBiz {
 
 	@Override
 	public int insertAndReturnId(Book book) {
-		// TODO Auto-generated method stub
-		return 0;
+		BookDao bookDao = null;
+		int result =  0 ;
+		try {
+			bookDao = (BookDao) BizUtil.getDialectedDao(BookDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (bookDao != null) {
+			 result = bookDao.insertAndReturnId(book);
+			
+		}
+		return result;
+
 	}
 
 	@Override
 	public boolean update(Book book) {
-		// TODO Auto-generated method stub
-		return false;
+		int influences = 0;
+		BookDao bookDao = null;
+		boolean result = false;
+		try {
+			bookDao = (BookDao) BizUtil.getDialectedDao(BookDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (bookDao != null) {
+			 influences = bookDao.update(book);
+			
+		}
+		if (influences > 0) {
+			result = true;
+		}
+		return result;
 	}
 
 	@Override
 	public boolean delete(Book book) {
-		// TODO Auto-generated method stub
-		return false;
+
+		int influences = 0;
+		BookDao bookDao = null;
+		boolean result = false;
+		try {
+			bookDao = (BookDao) BizUtil.getDialectedDao(BookDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (bookDao != null) {
+			 influences = bookDao.delete(book);
+			
+		}
+		if (influences > 0) {
+			result = true;
+		}
+		return result;
+
 	}
 
 }

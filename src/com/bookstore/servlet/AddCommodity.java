@@ -26,7 +26,7 @@ import com.bookstore.entity.Book;
 import com.bookstore.entity.Commodity;
 import com.bookstore.entity.User;
 
-@WebServlet("/AddCommodity.action")
+@WebServlet("/Auth/AddCommodity.action")
 public class AddCommodity extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -158,7 +158,7 @@ public class AddCommodity extends HttpServlet {
 			response.sendRedirect("SellerCommodityItems.action");
 		} else {
 			request.setAttribute("message", "上架商品出错！");
-			request.getRequestDispatcher("addCommodity.jsp").forward(request, response);
+			request.getRequestDispatcher("/Auth/addCommodity.jsp").forward(request, response);
 		}
 
 	}

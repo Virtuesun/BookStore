@@ -84,7 +84,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	@Override
 	public int update(User user) {
-		String sql = "update user set role=?, username=?, showname=?,password=?,sex=?,age=?,email=?,phone=?,address=? where id=?";
+		String sql = "update `user` set role=?, username=?, showname=?,password=?,sex=?,age=?,email=?,phone=?,address=? where id=?";
 		Object[] params = { user.getRole(),user.getUsername(), user.getShowname(), user.getPassword(),user.getSex(),user.getAge(), user.getEmail(),
 				user.getPhone(),user.getAddress(),user.getId() };
 		return this.executeUpdate(sql, params);
