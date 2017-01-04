@@ -332,5 +332,91 @@ public class CommodityBizImpl implements com.bookstore.biz.CommodityBiz {
 		
 	}
 
+	@Override
+	public Vector<CommodityItem> getAllCommodityItems() {
+		CommodityDao commodityDao = null;
+		Vector<CommodityItem> commodityItems = new Vector<CommodityItem>();
+		
+		try {
+				commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			 commodityItems = commodityDao.getAllCommodityItems();
+			
+		}
+		return commodityItems;
+	}
+	
+	@Override
+	public Commodity getNewCommodityView_count(Commodity commodity1) {
+		CommodityDao commodityDao = null;
+		Commodity commodity = null;
+
+		try {
+			commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			commodity = commodityDao.getNewCommodityView_count(commodity1);
+		}
+		return commodity;
+	}
+	
+	@Override
+	public Vector<CommodityItem> getCommodityItemsByView_count() {
+		
+		CommodityDao commodityDao = null;
+		Vector<CommodityItem> commodityItems = new Vector<CommodityItem>();
+		
+		try {
+				commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			 commodityItems = commodityDao.getCommodityItemsByView_count();
+			
+		}
+		return commodityItems;
+		
+	}
+	
+	@Override
+	public CommodityItem getCommodityItemById(int id) {
+		
+		CommodityDao commodityDao = null;
+		CommodityItem commodityItem = null;
+
+		try {
+			commodityDao = (CommodityDao) BizUtil.getDialectedDao(CommodityDao.class);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (commodityDao != null) {
+			commodityItem = commodityDao.getCommodityItemById(id);
+		}
+		return commodityItem;
+		
+	}
+
 
 }

@@ -46,8 +46,8 @@ public class AddCommodity extends HttpServlet {
 		commodity.setId_seller(user.getId());
 
 		// 上传文件的存储路径（服务器文件系统上的绝对文件路径）
-		//String uploadFilePath = request.getSession().getServletContext().getRealPath("commodityImage/");
-		String uploadFilePath = "D://BookStore/CommodityImage/";
+		String uploadFilePath = request.getSession().getServletContext().getRealPath("commodityImage/");
+		
 		
 		File uploadFile = new File(uploadFilePath);
 		if (!uploadFile.exists()) {
@@ -114,7 +114,7 @@ public class AddCommodity extends HttpServlet {
 						commodity.setPrice(Double.parseDouble(fieldValue));
 						break;
 					case "number":
-						commodity.setPrice(Double.parseDouble(fieldValue));
+						commodity.setNumber(Integer.parseInt(fieldValue));
 						break;
 					case "title":
 						commodity.setTitle(fieldValue);
@@ -139,7 +139,7 @@ public class AddCommodity extends HttpServlet {
 							File fullFile = new File(newFileName);
 							File saveFile = new File(uploadFilePath, fullFile.getName());
 							item.write(saveFile);
-							commodity.setImage(uploadFilePath+newFileName);
+							commodity.setImage("commodityImage\\"+newFileName);
 						}
 					} else {
 						success = false;
@@ -158,7 +158,6 @@ public class AddCommodity extends HttpServlet {
 			commodity.setState("在架");
 			CommodityBiz commodityBiz = new CommodityBizImpl();
 			commodityBiz.insert(commodity);
-			System.out.println(uploadFilePath );
 			response.sendRedirect("../index.jsp");
 		} else {
 			request.setAttribute("message", "上架商品出错！");

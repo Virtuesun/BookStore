@@ -103,6 +103,13 @@
       .dropdown{
         display: none;
       }
+      .nav-box{
+      display:none;
+      }
+      .search-box{
+      width:100%;
+      height:auto;
+      }
     </style>
   </head>
   <body>
@@ -116,7 +123,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">617Store</a>
+      <a class="navbar-brand index" href="#">617Store</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -138,12 +145,12 @@
 
 
       </ul>
-      <form class="navbar-form navbar-left" role="search" action="SearchServlet.action" method="get">
+      <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control search-text" placeholder="Search" name="keywords">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+        <button type="submit" class="btn btn-default search-btn">Submit</button>
+     </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -195,6 +202,7 @@
 
 
 	<!-- 导航 -->
+<div class="nav-box">
 	<ul class="nav nav-tabs nav-justified" role="tablist">
 	  <li class="active"><a href="#wenyi" role="tab" data-toggle="tab">文艺</a></li>
 	  <li><a href="#shenghuo" role="tab" data-toggle="tab">生活</a></li>
@@ -315,7 +323,7 @@
 			</div>
 		</div>
 	</div>
-
+</div>
 
 <!-- 遮罩 -->
 <div class="mask"></div>
@@ -335,6 +343,13 @@
 
 
 
+<!-- 搜索结果 -->
+  <div class="container-fluid search-box">
+    
+  </div>
+
+
+
 	<hr>
 	
 	<footer>
@@ -342,7 +357,7 @@
 			<li>Copyright©617store</li>
 			<li>2016-2018</li>
 			<li>All Rights Reserved</li>
-      <li><a href="SearchServlet.action?keywords=自在独行" id="manage">后台管理</a></li>
+      <li><a href="managePage.jsp" id="manage">后台管理</a></li>
 		</ul>
 	</footer>
 

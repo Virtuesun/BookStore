@@ -35,6 +35,15 @@ public interface CommodityDao {
 
 	// 删除商品
 	int delete(Commodity commodity);
+	
+	// 点击量增加
+	Commodity getNewCommodityView_count(Commodity commodity);
+	
+	//通过id获取商品item
+	CommodityItem getCommodityItemById(int id);
+	
+	//点击量排序
+	Vector<CommodityItem> getCommodityItemsByView_count();
 
 	// 获取商品项
 	Vector<CommodityItem> getCommodityItemsByBookName(String bookName);
@@ -44,4 +53,6 @@ public interface CommodityDao {
 	Vector<CommodityItem> getCommodityItemsByBookCategory(String category);
 
 	Vector<CommodityItem> getCommodityItemsBySellerName(String sellerName);
+	
+	Vector<CommodityItem> getAllCommodityItems();
 }

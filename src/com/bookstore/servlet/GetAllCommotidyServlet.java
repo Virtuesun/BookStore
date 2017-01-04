@@ -19,38 +19,26 @@ import com.bookstore.biz.CommodityBiz;
 import com.bookstore.biz.impl.CommodityBizImpl;
 import com.bookstore.entity.CommodityItem;
 
-@WebServlet("/SearchServlet.action")
-public class SearchServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	
+@WebServlet("/GetAllCommotidyServlet.action")
+public class GetAllCommotidyServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
-		
-		String keywords = request.getParameter("keywords");
+
 		PrintWriter out = response.getWriter();
 
 		boolean result = false;
 	
+		
 			try {
 				
-				CommodityBiz commodityBiz = new CommodityBizImpl();
-				
-				Vector<CommodityItem> commodityItems = new Vector<>();
-				//按书名查找
-				commodityItems.addAll(commodityBiz.getCommodityItemsByBookName(keywords));
-				//按作者查找
-				commodityItems.addAll(commodityBiz.getCommodityItemsByBookAuthor(keywords));
-				//按分类查找
-				commodityItems.addAll(commodityBiz.getCommodityItemsByBookCategory(keywords));
-				//按卖家查找
-				commodityItems.addAll(commodityBiz.getCommodityItemsBySellerName(keywords));
+				CommodityBiz commodityBiz= new CommodityBizImpl();
+				Vector<CommodityItem> commodityItems = commodityBiz.getAllCommodityItems();
 				
 				request.setAttribute("commodityItems", commodityItems);
-				//request.getRequestDispatcher("searchPage.jsp").forward(request, response);
-				
 				result = true;
 				Mapper mapper = new MapperBuilder().build();
 				mapper.writeObject(commodityItems, out);
@@ -67,7 +55,6 @@ public class SearchServlet extends HttpServlet {
 			generator.writeStartObject().write("message", "The details of the album cannot be obtained!").writeEnd();
 			out.close();
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

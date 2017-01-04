@@ -35,9 +35,18 @@ public interface CommodityBiz {
 
 	// 删除商品
 	boolean delete(Commodity commodity);
+	
+	//通过id获取商品item
+	CommodityItem getCommodityItemById(int id);
+	
+	//点击量排序
+	Vector<CommodityItem> getCommodityItemsByView_count();
+	
+	//点击量增加
+	Commodity getNewCommodityView_count(Commodity commodity);
 
-	// 20161231 19:30
-	// 获取商品项
+	Vector<CommodityItem> getAllCommodityItems();
+	
 	Vector<CommodityItem> getCommodityItemsByBookName(String bookName);
 
 	Vector<CommodityItem> getCommodityItemsByBookAuthor(String author);

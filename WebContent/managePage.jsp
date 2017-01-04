@@ -59,25 +59,7 @@
   <div id="managePage">
    <h1>库存管理</h1>
       <hr>
-    <table class="table table-striped">
-     <tr>
-      <th>商品</th>
-      <th>名称</th>
-      <th>价格</th>
-      <th>数量</th>
-      </tr>
-      <tr>
-        <td><img src="./images/02.jpg"></td>
-        <td>《莎士比亚》</td>
-        <td>$300</td>
-        <td>300</td>
-      </tr>
-      <tr>
-        <td><img src="./images/01.jpg"></td>
-        <td>《福尔摩斯》</td>
-        <td>$300</td>
-        <td>300</td>
-      </tr>
+    <table class="table table-striped manageTable">
       <tr>
       <td colspan="4"><button class="btn btn-warning" onclick="javascript:window.location.href='grounding.jsp';">上架</button>
       <button class="btn btn-warning" onclick="javascript:;">下架</button>
@@ -85,12 +67,6 @@
       </td>
       </tr>
     </table>
-    <jsp:useBean id="commodityItems" class="java.util.Vector" scope="request"></jsp:useBean>
-      bookName: ${commodityItems[0].bookName }
-      title: ${commodityItems[0].title }
-      price: ${commodityItems[0].price }
-      image: ${commodityItems[0].image }
-      <img src="${commodityItems[0].image }">
   </div>
 	
 
